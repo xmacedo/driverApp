@@ -18,6 +18,12 @@
     border: #000000;
 }
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
 img ,#spacer{
     width: 80px;
     
@@ -31,12 +37,13 @@ img ,#spacer{
 }
 
 .fundo{
+  background-color: #913434;
     height: 100%;
-    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-
+    top:100px;
+    bottom:0;
 }
 
 .caixa-pergunta{
@@ -47,8 +54,9 @@ img ,#spacer{
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin-top: 3%;
-    margin: 0 auto;
+    
+    margin: 5% auto;
+    
 }
 
 .caixa-pergunta-texto {
