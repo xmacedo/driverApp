@@ -10,6 +10,10 @@
     
 }
 
+[v-cloak] {
+  display: none
+}
+
 .cabecalho {
     padding: 2%;
     width: 100%;
@@ -37,7 +41,7 @@ img ,#spacer{
 }
 
 .fundo{
-  background-color: #913434;
+  background-color: gray;
     height: 100%;
     display: flex;
     flex-direction: column;
