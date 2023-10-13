@@ -30,11 +30,13 @@ img ,#spacer{
     font-family: 'Montserrat', sans-serif;
 }
 
-.centered {
-    position: fixed;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.fundo{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
 }
 
 .caixa-pergunta{
@@ -45,16 +47,18 @@ img ,#spacer{
     display: flex;
     justify-content: center;
     flex-direction: column;
-    
+    margin-top: 3%;
+    margin: 0 auto;
 }
 
 .caixa-pergunta-texto {
+    position: relative;
+    top: 0;
     font-family: 'Krona One', 'sans-serif';
     font-weight: 400;
     font-size: 1.5rem;
     display: flex;
     justify-content: center;
-    text-align:start;
     
 }
 
@@ -64,13 +68,39 @@ div.opcoes {
     justify-content: center;
 }
 
+div.botoes{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.botoes-pergunta{
+    height: 100px;
+    width: 300px;
+    margin: 5% 15%;
+    border-radius: 5%;
+    background-color: white;
+    border-color: #000000;
+}
+
+.botoes-pergunta:hover{
+    background-color: lightgray;
+}
+
 h1.legenda{
     display: flex;
     justify-content: center;
     text-align:center;
+    color: green;
 }
 
-
+h1.legenda-direita{
+    display: flex;
+    justify-content: center;
+    text-align:center;
+    margin-left: 5%;
+    color: red;
+}
 
 .container {
     display: flex;
@@ -97,25 +127,17 @@ h1.legenda{
   /* Create a custom radio button */
   .checkmark {
     position:relative;
-    top: 25px;
-    left: -50px;
     height: 100px;
     width: 100px;
     background-color: #fff;
     border-radius: 50%;
     display: flex;
     justify-content:space-between;
-    border: 2px solid black;
   }
   
   /* On mouse-over, add a grey background color */
   .container:hover input ~ .checkmark {
     background-color: #ccc;
-  }
-  
-  /* When the radio button is checked, add a blue background */
-  .container input:checked ~ .checkmark {
-    background-color: #2196F3;
   }
   
   /* Create the indicator (the dot/circle - hidden when not checked) */
@@ -129,4 +151,45 @@ h1.legenda{
   .container input:checked ~ .checkmark:after {
     display: block;
   }
+
+  .opcao-1{
+    border: 2px solid green;
+  }
+
+  .container input:checked ~ .opcao-1 {
+    background-color: green;
+  }
+  
+  .opcao-2{
+    border: 2px solid greenyellow;
+  }
+
+  .container input:checked ~ .opcao-2 {
+    background-color: greenyellow;
+  }
+  
+  .opcao-3{
+    border: 2px solid yellow;
+  }
+
+  .container input:checked ~ .opcao-3 {
+    background-color: yellow;
+  }
+
+  .opcao-4{
+    border: 2px solid orange;
+  }
+
+  .container input:checked ~ .opcao-4 {
+    background-color: orange;
+  }
+
+  .opcao-5{
+    border: 2px solid red;
+  }
+
+  .container input:checked ~ .opcao-5 {
+    background-color: red;
+  }
+  
   
