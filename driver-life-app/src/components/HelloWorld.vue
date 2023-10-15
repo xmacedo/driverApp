@@ -1,35 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+<template>
+  <img class="img-fundo" src="../assets/fundo-vermelho.png" alt="">
 
-[v-cloak] {
-    display: none
-}
+  <div class="fundo centered">
+    <p class="texto">Por favor, leia cada afirmativa e marque a resposta que indique quanto ela se aplicou a você durante a última semana.</p>
+  </div>
 
-:root{
-    --cor-primaria: #913434;
-    
-}
+  <div class="apresentacao__botao">
+  <router-link to="/teste">Inicar Teste</router-link>
+  </div>
+</template>
 
-.cabecalho {
-    padding: 2%;
-    width: 100%;
-    display:flex;
-    align-items:center;
-    border: #000000;
-}
-
-img ,#spacer{
-    width: 80px;
-    
+<script>
+export default {
+  name: 'HelloWorld',
+  props: {
+    msg: String
   }
-
-.texto-header {
-    padding: 2%;
-    text-align: center;
-    font-size: 1.5rem;
-    font-family: 'Montserrat', sans-serif;
 }
+</script>
 
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
 .img-fundo {
     width: 100%;
     height: 300px;
@@ -43,17 +34,17 @@ img ,#spacer{
 }
 
 div.fundo {
-    margin: 30px;
-    background-color: gray;
-    border: 1px solid black;
-    border-radius: 16px;
-    height: 200px;
-    width: 700px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  margin: 30px;
+  background-color: gray;
+  border: 1px solid black;
+  border-radius: 16px;
+  height: 200px;
+  width: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-  
+
 p.texto {
     margin: 5%;
     font-size: 28px;
@@ -66,7 +57,6 @@ p.texto {
     margin: 100px;
     flex-direction: column;
     align-items: center;
-    
 }
 
 .apresentacao__botao__texto {
@@ -88,3 +78,5 @@ p.texto {
     background-color: var(--cor-primaria);
     color: white;
 }
+
+</style>
