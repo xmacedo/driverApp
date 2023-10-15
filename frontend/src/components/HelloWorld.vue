@@ -1,33 +1,12 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-router" target="_blank" rel="noopener">router</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <img class="img-fundo" src="../assets/fundo-vermelho.png" alt="">
+
+  <div class="fundo centered">
+    <p class="texto">Por favor, leia cada afirmativa e marque a resposta que indique quanto ela se aplicou a você durante a última semana.</p>
+  </div>
+
+  <div class="apresentacao__botao">
+  <router-link to="/teste">Inicar Teste</router-link>
   </div>
 </template>
 
@@ -42,18 +21,62 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.img-fundo {
+    width: 100%;
+    height: 300px;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+
+.centered {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+
+div.fundo {
+  margin: 30px;
+  background-color: gray;
+  border: 1px solid black;
+  border-radius: 16px;
+  height: 200px;
+  width: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-a {
-  color: #42b983;
+
+p.texto {
+    margin: 5%;
+    font-size: 28px;
+    font-weight: bold;
+    color: #000000;
 }
+
+.apresentacao__botao {
+    display: flex;
+    margin: 100px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.apresentacao__botao__texto {
+    color: black;
+    width: 20%;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    padding: 21px;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    border: 2px solid var(--cor-primaria);
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.apresentacao__botao__texto:hover {
+    background-color: var(--cor-primaria);
+    color: white;
+}
+
 </style>
