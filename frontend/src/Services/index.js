@@ -8,9 +8,42 @@ const services = {
         return perguntas;
     }
 }
+//import firebase from firebase
+//
+const admin = require('firebase-admin');
+const serviceAccount = require('./key/serviceAccountKey.json'); // Caminho para o arquivo de credenciais
+
+// Inicialize o Firebase Admin SDK com suas credenciais
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: 'https://driverapp-a6350-default-rtdb.firebaseio.com' // Substitua pelo URL de sua base de dados Firebase
+});
+
+// Referência à base de dados Realtime do Firebase
+const db = admin.database();
+const ref = db.ref('perguntas');
+const perguntas = []
+// Obtém todas as perguntas
+ref.once('value', (snapshot) => {
+  const response = snapshot.val();
+  
+  if (response) {
+    Object.keys(response).forEach((perguntaId, index) => {
+        perguntas.push(response[perguntaId])
+      //const pergunta = response[perguntaId];
+      console.log(`Pergunta ${index + 1}: ${pergunta}`);
+    });
+  } else {
+    console.log('Nenhuma pergunta encontrada no Firebase Realtime Database.');
+  }
+
+  // Encerra a conexão com o Firebase
+  admin.app().delete();
+});
+// edn
 
 
-const perguntas = [
+/*const perguntas = [
     "Achei difícil me acalmar",
     "Senti minha boca seca",
     "Não consegui sentir nenhum sentimento positivo",
@@ -32,5 +65,5 @@ const perguntas = [
     "Sabia que meu coração estava alterado mesmo não tendo feito nenhum esforço físico (ex. aumento da frequência cardíaca, descompasso no ritmo cardíaco)",
     "Senti medo sem motivo",
     "Senti que a vida não tinha sentido"
-]
+]*/
 export default services;
