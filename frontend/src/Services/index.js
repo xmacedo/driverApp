@@ -1,5 +1,5 @@
 /* eslint-disable */ // --> OFF
-const services = {
+/*const services = {
     getPergunta(pos){
         return perguntas[pos];
     },
@@ -7,22 +7,14 @@ const services = {
     getPerguntas(){
         return perguntas;
     }
-}
+}*/
 //import firebase from firebase
 //
-const admin = require('firebase-admin');
-const serviceAccount = require('./key/serviceAccountKey.json'); // Caminho para o arquivo de credenciais
-
+import app from '../key/configKey'
 // Inicialize o Firebase Admin SDK com suas credenciais
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://driverapp-a6350-default-rtdb.firebaseio.com' // Substitua pelo URL de sua base de dados Firebase
-});
-
+console.log(app)
 // Referência à base de dados Realtime do Firebase
-const db = admin.database();
-const ref = db.ref('perguntas');
-const perguntas = []
+/*const perguntas = []
 // Obtém todas as perguntas
 ref.once('value', (snapshot) => {
   const response = snapshot.val();
@@ -39,7 +31,7 @@ ref.once('value', (snapshot) => {
 
   // Encerra a conexão com o Firebase
   admin.app().delete();
-});
+});*/
 // edn
 
 
