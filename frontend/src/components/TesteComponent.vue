@@ -1,3 +1,4 @@
+
 <template>
     <div class="fundo">
         <div class="centered caixa-pergunta">
@@ -40,18 +41,27 @@
 </template>
 
 <script>
+/* eslint-disable */
+import services from '../Services'
 export default {
   name: 'TesteComponent',
 
   data () {
     return {
-      pergunta: 'teste?'
+      pergunta: 'teste?',
+      idx: 0
     }
   },
 
   methods: {
+    onCreated () {
+      this.pergunta = services.getPergunta(this.idx)
+    },
+    
     mudarPergunta () {
-      this.pergunta = 'pergunta difernete'
+      this.idx++
+      this.pergunta = services.getPergunta(this.idx)
+
     }
   }
 }
