@@ -1,4 +1,3 @@
-
 <template>
     <div class="fundo">
         <div class="centered caixa-pergunta">
@@ -32,8 +31,8 @@
         </div>
 
         <div class="botoes">
-            <button class="botoes-pergunta" @click="mudarPergunta">Pergunta anterior</button>
-            <button class="botoes-pergunta">Proxima pergunta</button>
+            <button class="botoes-pergunta" @click="perguntaAnterior">Pergunta anterior</button>
+            <button class="botoes-pergunta" @click="perguntaProxima">Proxima pergunta</button>
 
         </div>
 
@@ -47,18 +46,26 @@ export default {
   name: 'TesteComponent',
 
   data () {
+    //perguntaProxima();
     return {
-      pergunta: 'teste?',
+      pergunta: '',
       idx: 0
     }
   },
-
-  methods: {
-    onCreated () {
+  created () {
+      this.pergunta = services.getPergunta(this.idx)
+  },
+  methods: {  
+    perguntaAnterior () {
+      if(this.idx > 0){
+        this.idx--
+      }
       this.pergunta = services.getPergunta(this.idx)
     },
-    
-    mudarPergunta () {
+    perguntaProxima () {
+      if(this.idx < services.getPerguntas().length){
+        this.idx++
+      }
       this.idx++
       this.pergunta = services.getPergunta(this.idx)
 
