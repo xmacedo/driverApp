@@ -1,6 +1,6 @@
 /* eslint-disable */
 <template>
-    <TesteComponent pergunta="Teste?"></TesteComponent>
+    <TesteComponent></TesteComponent>
 </template>
 
 <script>

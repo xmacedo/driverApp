@@ -7,7 +7,7 @@
             <div class="opcoes">
                 <h1 class="legenda">Pouco</h1>
                 <label class="container">
-                    <input type="radio" checked="checked" name="radio">
+                    <input type="radio" name="radio">
                     <span class="checkmark opcao-1"></span>
                 </label>
                 <label class="container">
@@ -41,7 +41,7 @@
 
 <script>
 /* eslint-disable */
-import services from '../Services'
+import services from '../Services/index'
 export default {
   name: 'TesteComponent',
 
@@ -61,13 +61,16 @@ export default {
         this.idx--
       }
       this.pergunta = services.getPergunta(this.idx)
+      console.log(this.idx);
     },
     perguntaProxima () {
-      if(this.idx < services.getPerguntas().length){
+      if(this.idx < services.getPerguntas().length-1){
         this.idx++
+        console.log(this.idx);
+
       }
-      this.idx++
       this.pergunta = services.getPergunta(this.idx)
+
 
     }
   }

@@ -1,20 +1,46 @@
 /* eslint-disable */ // --> OFF
-/*const services = {
-    getPergunta(pos){
-        return perguntas[pos];
-    },
 
-    getPerguntas(){
-        return perguntas;
-    }
-}*/
+
 //import firebase from firebase
 //
-import app from '../key/configKey'
+
+import perguntasArray from "@/key/configKey";
+
 // Inicialize o Firebase Admin SDK com suas credenciais
-console.log(app)
+//console.log(app)
+
+
+const services = {
+  getPergunta(pos) {
+    return perguntasArray[0][pos];
+  },
+  getPerguntas() {
+    return perguntasArray[0];
+  }
+}
+
+/* get(dbRef, `perguntas/`).then((snapshot) => {
+  if (snapshot.exists()) {
+    
+    perguntas.push(snapshot.val());
+  } else {
+    console.log("No data available");
+  }
+}).catch((error) => {
+  console.error(error);
+});
+ 
+
+
+/* 
+var perguntasRef = firebase.database().ref('perguntas/');
+perguntasRef.on('value', (snapshot) => {
+  const data = snapshot.val();
+  console.log(data);
+});
+ */
 // Referência à base de dados Realtime do Firebase
-/*const perguntas = []
+/* const perguntas = []
 // Obtém todas as perguntas
 ref.once('value', (snapshot) => {
   const response = snapshot.val();
@@ -31,11 +57,13 @@ ref.once('value', (snapshot) => {
 
   // Encerra a conexão com o Firebase
   admin.app().delete();
-});*/
+}); */
 // edn
 
 
-/*const perguntas = [
+
+/* 
+const perguntas = [
     "Achei difícil me acalmar",
     "Senti minha boca seca",
     "Não consegui sentir nenhum sentimento positivo",
@@ -57,5 +85,5 @@ ref.once('value', (snapshot) => {
     "Sabia que meu coração estava alterado mesmo não tendo feito nenhum esforço físico (ex. aumento da frequência cardíaca, descompasso no ritmo cardíaco)",
     "Senti medo sem motivo",
     "Senti que a vida não tinha sentido"
-]*/
+] */
 export default services;
