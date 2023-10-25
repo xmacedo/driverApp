@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav> 
     <router-link to="/">Home</router-link> |
     <router-link to="/teste">Teste</router-link>
   </nav>
