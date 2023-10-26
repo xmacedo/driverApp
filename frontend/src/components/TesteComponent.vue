@@ -1,7 +1,7 @@
 <template>
     <div class="fundo" id="divFundo">
         <div class="w3-light-grey w3-round-large">
-            <div class="w3-container w3-blue w3-round-large" id="progressBar" style="width:0%">.</div>
+            <div class="w3-container w3-blue w3-round-large" id="progressBar" style="width:0%"> ∘ </div>
         </div><br>
         <div class="caixa-pergunta">
             <div>
