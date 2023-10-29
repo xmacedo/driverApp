@@ -339,13 +339,13 @@ h1.legenda-direita {
 @media (max-width: 1200px) {
 
     .caixa-pergunta {
-        background-color: SeaShell;
-        width: 70%;
+        width: 100%;
         height: 35%;
         display: flex;
         justify-content: center;
         flex-direction: column;
-        margin: 5% auto;
+        margin-top: 50%;
+        margin-bottom: 50%;
 
     }
 
