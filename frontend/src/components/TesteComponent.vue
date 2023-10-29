@@ -31,8 +31,9 @@
         </div>
 
         <div class="botoes">
-            <button v-if="visivel1" class="botoes-pergunta" @click="perguntaAnterior">Pergunta anterior</button>
-            <button v-if="visivel2" class="botoes-pergunta" @click="perguntaProxima">Proxima pergunta</button>
+            <button v-show="visivelAnterior" class="botoes-pergunta" @click="perguntaAnterior">Pergunta anterior</button>
+            <button v-show="visivelProximo" class="botoes-pergunta" @click="perguntaProxima">Proxima pergunta</button>
+            <button v-show="visivel3"  class="botoes-pergunta" @click="$router.push('/about')">Ver resultados</button>
 
         </div>
 
@@ -49,8 +50,9 @@ export default {
         return {
             pergunta: '',
             idx: 0,
-            visivel1: false,
-            visivel2: true,
+            visivelAnterior: false,
+            visivelProximo: true,
+            visivel3: false,
             tamanhoLista: services.getPerguntas().length
         }
     },
@@ -61,11 +63,13 @@ export default {
         perguntaAnterior() {
             this.limpaTela();
 
-            if (this.idx <= 1) { this.visivel1 = false }
+            if (this.idx <= 1) { this.visivelAnterior = false }
 
             if (this.idx > 0) {
                 this.idx--
-                this.visivel2 = true
+                this.visivelProximo = true
+                this.visivel3 = false
+
             }
             this.pergunta = services.getPergunta(this.idx)
             this.moveBarra();
@@ -73,12 +77,15 @@ export default {
         perguntaProxima() {
             this.limpaTela();
 
-            if (this.idx >= services.getPerguntas().length - 2) { this.visivel2 = false }
+            if (this.idx >= services.getPerguntas().length - 2) {
+                this.visivelProximo = false
+                this.visivel3 = true
+            }
 
             if (this.idx < services.getPerguntas().length - 1) {
                 this.idx++
                 this.pergunta = services.getPergunta(this.idx)
-                this.visivel1 = true
+                this.visivelAnterior = true
             }
 
             this.moveBarra();
@@ -92,10 +99,10 @@ export default {
             document.getElementById("btn4").checked = false;
         },
 
-        moveBarra(){
-            var tamPercent = 100/this.tamanhoLista;
-            var percentAtual = tamPercent*(this.idx+1);
-            document.getElementById("progressBar").style.width= percentAtual + "%";
+        moveBarra() {
+            var tamPercent = 100 / this.tamanhoLista;
+            var percentAtual = tamPercent * (this.idx + 1);
+            document.getElementById("progressBar").style.width = percentAtual + "%";
         },
         selecionado1() {
             document.getElementById("divFundo").style.backgroundColor = "LimeGreen";
@@ -159,6 +166,10 @@ div.botoes {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.invisible {
+    visibility: hidden;
 }
 
 .botoes-pergunta {
