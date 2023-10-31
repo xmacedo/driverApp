@@ -4,6 +4,11 @@
   <div class="fundo centered">
     <p class="texto">Por favor, leia cada afirmativa e marque a resposta que indique quanto ela se aplicou a você durante a última semana.</p>
   </div>
+  <div class="apresentacao__botao">
+    <button v-show="visivel3"  class="apresentacao__botao__texto" @click="$router.push('/teste')">Iniciar teste</button>
+  </div>
+  
+
 
 </template>
 
@@ -49,6 +54,32 @@ p.texto {
     color: #000000;
 }
 
+.apresentacao__botao {
+    display: flex;
+    margin: 100px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.apresentacao__botao__texto {
+    color: black;
+    text-align: center;
+    border-radius: 5%;
+    font-size: 1.5rem;
+    padding: 5%;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    border-style: solid;
+    border: 5% solid black;
+    display: flex;
+    justify-content: center;
+    gap: 5%;
+}
+
+.apresentacao__botao__texto:hover {
+    background-color:darkred;
+    color: white;
+}
 
 
 </style>

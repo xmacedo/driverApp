@@ -1,39 +1,16 @@
 <template>
     <div class="fundo" id="divFundo">
         <div class="w3-light-grey w3-round-large">
-            <div class="w3-container w3-blue w3-round-large" id="progressBar" style="width:0%"> ∘ </div>
+            <div class="w3-container w3-blue w3-round-large" id="progressBar" :style="moveBarra()"> ∘ </div>
         </div><br>
-        <div class="caixa-pergunta">
-            <div>
-                <h2 class="caixa-pergunta-texto">{{ pergunta }}</h2>
-            </div>
-            <div class="opcoes">
-                <h1 class="legenda">Pouco</h1>
-                <label class="container">
-                    <input type="radio" name="radio" @click="selecionado1" id="btn1">
-                    <span class="checkmark opcao-1"></span>
-                </label>
-                <label class="container">
-                    <input type="radio" name="radio" @click="selecionado2" id="btn2">
-                    <span class="checkmark opcao-2"></span>
-                </label>
-                <label class="container">
-                    <input type="radio" name="radio" @click="selecionado3" id="btn3">
-                    <span class="checkmark opcao-3"></span>
-                </label>
-                <label class="container">
-                    <input type="radio" name="radio" @click="selecionado4" id="btn4">
-                    <span class="checkmark opcao-4"></span>
-                </label>
-
-                <h1 class="legenda-direita">Muito</h1>
-            </div>
-        </div>
+        
+        <CaixaPergunta :pergunta="pergunta" @resposta="selecionado"></CaixaPergunta>
+       
 
         <div class="botoes">
-            <button v-show="visivelAnterior" class="botoes-pergunta" @click="perguntaAnterior">Pergunta anterior</button>
-            <button v-show="visivelProximo" class="botoes-pergunta" @click="perguntaProxima">Proxima pergunta</button>
-            <button v-show="visivel3"  class="botoes-pergunta" @click="$router.push('/about')">Ver resultados</button>
+            <button :style=" (visivelAnterior?'visibility: visible':'visibility: hidden')" class="botoes-pergunta" @click="perguntaAnterior">Pergunta anterior</button>
+            <button v-show="visivelProximo" class="botao-direita botoes-pergunta" @click="perguntaProxima">Proxima pergunta</button>
+            <button v-show="visivel3" class="botoes-pergunta" @click="$router.push('/resultados')">Ver resultados</button>
 
         </div>
 
@@ -42,10 +19,15 @@
 
 <script>
 /* eslint-disable */
+import { onLog } from 'firebase/app';
 import services from '../Services/index'
+import CaixaPergunta from './CaixaPergunta.vue';
 export default {
     name: 'TesteComponent',
 
+    components: {
+        CaixaPergunta
+    },
     data() {
         return {
             pergunta: '',
@@ -53,43 +35,39 @@ export default {
             visivelAnterior: false,
             visivelProximo: true,
             visivel3: false,
-            tamanhoLista: services.getPerguntas().length
-        }
+            tamanhoLista: services.getPerguntas().length,
+            valoresRespondidos: [],
+            botoesResposta: document.getElementsByName("radio"),
+        };
     },
     created() {
-        this.pergunta = services.getPergunta(this.idx)
+        this.pergunta = services.getPergunta(this.idx);
     },
     methods: {
         perguntaAnterior() {
-            this.limpaTela();
-
-            if (this.idx <= 1) { this.visivelAnterior = false }
-
-            if (this.idx > 0) {
-                this.idx--
-                this.visivelProximo = true
-                this.visivel3 = false
-
+            if (this.idx <= 1) {
+                this.visivelAnterior = false;
             }
-            this.pergunta = services.getPergunta(this.idx)
-            this.moveBarra();
+            if (this.idx > 0) {
+                this.idx--;
+                this.visivelProximo = true;
+                this.visivel3 = false;
+            }
+            this.pergunta = services.getPergunta(this.idx);
+           
         },
         perguntaProxima() {
-            this.limpaTela();
-
+            this.salvaResposta();
             if (this.idx >= services.getPerguntas().length - 2) {
-                this.visivelProximo = false
-                this.visivel3 = true
+                this.visivelProximo = false;
+                this.visivel3 = true;
             }
-
             if (this.idx < services.getPerguntas().length - 1) {
-                this.idx++
-                this.pergunta = services.getPergunta(this.idx)
-                this.visivelAnterior = true
+                this.idx++;
+                this.pergunta = services.getPergunta(this.idx);
+                this.visivelAnterior = true;
             }
-
-            this.moveBarra();
-
+            this.limpaTela();
         },
         limpaTela() {
             document.getElementById("divFundo").style.backgroundColor = "SeaShell";
@@ -98,26 +76,52 @@ export default {
             document.getElementById("btn3").checked = false;
             document.getElementById("btn4").checked = false;
         },
-
+        salvaResposta() {
+            if (this.valoresRespondidos[this.idx] != null) {
+                for (let index = 0; index < this.botoesResposta.length; index++) {
+                    if (this.botoesResposta[index].checked == true) {
+                        this.valoresRespondidos[this.idx] = this.botoesResposta[index].value;
+                    }
+                }
+            }
+            else {
+                for (let index = 0; index < this.botoesResposta.length; index++) {
+                    if (this.botoesResposta[index].checked == true) {
+                        this.valoresRespondidos.push(this.botoesResposta[index].value);
+                    }
+                }
+            }
+            console.log(this.valoresRespondidos);
+        },
         moveBarra() {
             var tamPercent = 100 / this.tamanhoLista;
             var percentAtual = tamPercent * (this.idx + 1);
-            document.getElementById("progressBar").style.width = percentAtual + "%";
-        },
-        selecionado1() {
-            document.getElementById("divFundo").style.backgroundColor = "LimeGreen";
-        },
-        selecionado2() {
-            document.getElementById("divFundo").style.backgroundColor = "LightGreen";
+           // document.getElementById("progressBar").style.width = percentAtual + "%";
+            return 'width:'+ percentAtual.toFixed(0) + "%";
+         },
+        selecionado(valor) {
+            switch (valor) {
+                case 0:
+                    document.getElementById("divFundo").style.backgroundColor = "LimeGreen";
+
+                    break;
+                case 1:
+                    document.getElementById("divFundo").style.backgroundColor = "LightGreen";
+
+                    break;
+                case 2:
+                    document.getElementById("divFundo").style.backgroundColor = "Khaki";
+
+                    break;
+                case 3:
+                    document.getElementById("divFundo").style.backgroundColor = "SandyBrown";
+
+                    break;
+                default:
+                    break;
+            }
 
         },
-        selecionado3() {
-            document.getElementById("divFundo").style.backgroundColor = "Khaki";
-        },
-        selecionado4() {
-            document.getElementById("divFundo").style.backgroundColor = "SandyBrown";
-        }
-
     }
 }
 </script>
@@ -131,35 +135,6 @@ export default {
     justify-content: center;
     top: 100px;
     bottom: 0;
-}
-
-.caixa-pergunta {
-    border-radius: 16px;
-    background-color: SeaShell;
-    border: 2px solid #000000;
-    width: 70%;
-    height: 35%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin: 5% auto;
-
-}
-
-.caixa-pergunta-texto {
-    position: relative;
-    top: 0;
-    font-weight: 400;
-    font-size: 3rem;
-    display: flex;
-    justify-content: center;
-
-}
-
-div.opcoes {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
 }
 
 div.botoes {
@@ -184,88 +159,6 @@ div.botoes {
 .botoes-pergunta:hover {
     background-color: lightgray;
 }
-
-h1.legenda {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    color: green;
-    margin-left: 3%;
-}
-
-h1.legenda-direita {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    margin-left: 5%;
-    margin-right: 3%;
-    color: orange;
-}
-
-.container {
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    cursor: pointer;
-    justify-content: center;
-    margin: 0 0 5% 0;
-}
-
-/*    Hide the browser's default radio button */
-.container input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-}
-
-/* Create a custom radio button */
-.checkmark {
-    position: relative;
-    height: 100px;
-    width: 100px;
-    background-color: #fff;
-    border-radius: 50%;
-    display: flex;
-    justify-content: space-between;
-}
-
-/* On mouse-over, add a grey background color */
-.container:hover input~.checkmark {
-    background-color: #ccc;
-}
-
-.opcao-1 {
-    border: 2px solid green;
-}
-
-.container input:checked~.opcao-1 {
-    background-color: green;
-}
-
-.opcao-2 {
-    border: 2px solid greenyellow;
-}
-
-.container input:checked~.opcao-2 {
-    background-color: greenyellow;
-}
-
-.opcao-3 {
-    border: 2px solid yellow;
-}
-
-.container input:checked~.opcao-3 {
-    background-color: yellow;
-}
-
-.opcao-4 {
-    border: 2px solid orange;
-}
-
-.container input:checked~.opcao-4 {
-    background-color: orange;
-}
-
 
 .w3-light-grey,
 .w3-hover-light-grey:hover,
