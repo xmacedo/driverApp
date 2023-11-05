@@ -3,14 +3,16 @@
         <div class="w3-light-grey w3-round-large">
             <div class="w3-container w3-blue w3-round-large" id="progressBar" :style="moveBarra()"> ∘ </div>
         </div><br>
-        
+
         <CaixaPergunta :pergunta="pergunta" @resposta="selecionado"></CaixaPergunta>
-       
+
 
         <div class="botoes">
-            <button :style=" (visivelAnterior?'visibility: visible':'visibility: hidden')" class="botoes-pergunta" @click="perguntaAnterior">Pergunta anterior</button>
-            <button v-show="visivelProximo" class="botao-direita botoes-pergunta" @click="perguntaProxima">Proxima pergunta</button>
-            <button v-show="visivel3" class="botoes-pergunta" @click="$router.push('/resultados')">Ver resultados</button>
+            <button :style="(visivelAnterior ? 'visibility: visible' : 'visibility: hidden')" class="botoes-pergunta"
+                @click="perguntaAnterior">Pergunta anterior</button>
+            <button id="botaoProximo" v-show="visivelProximo" class="botao-direita botoes-pergunta" disabled @click="perguntaProxima">Proxima
+                pergunta</button>
+            <button id="btnResultado" v-show="visivel3" class="botoes-pergunta" disabled @click="proximaTela">Ver resultados</button>
 
         </div>
 
@@ -25,6 +27,7 @@ import CaixaPergunta from './CaixaPergunta.vue';
 export default {
     name: 'TesteComponent',
 
+    emits: ['arrayResultados'],
     components: {
         CaixaPergunta
     },
@@ -34,10 +37,10 @@ export default {
             idx: 0,
             visivelAnterior: false,
             visivelProximo: true,
+            desabilitado: true,
             visivel3: false,
             tamanhoLista: services.getPerguntas().length,
             valoresRespondidos: [],
-            botoesResposta: document.getElementsByName("radio"),
         };
     },
     created() {
@@ -45,6 +48,7 @@ export default {
     },
     methods: {
         perguntaAnterior() {
+            this.limpaTela()
             if (this.idx <= 1) {
                 this.visivelAnterior = false;
             }
@@ -54,20 +58,22 @@ export default {
                 this.visivel3 = false;
             }
             this.pergunta = services.getPergunta(this.idx);
-           
+            document.getElementById('botaoProximo').disabled = true
+
         },
         perguntaProxima() {
-            this.salvaResposta();
-            if (this.idx >= services.getPerguntas().length - 2) {
+            if (this.idx >= this.tamanhoLista - 2) {
                 this.visivelProximo = false;
                 this.visivel3 = true;
             }
-            if (this.idx < services.getPerguntas().length - 1) {
+            if (this.idx < this.tamanhoLista - 1) {
                 this.idx++;
                 this.pergunta = services.getPergunta(this.idx);
                 this.visivelAnterior = true;
             }
             this.limpaTela();
+            document.getElementById('botaoProximo').disabled = true
+
         },
         limpaTela() {
             document.getElementById("divFundo").style.backgroundColor = "SeaShell";
@@ -76,30 +82,24 @@ export default {
             document.getElementById("btn3").checked = false;
             document.getElementById("btn4").checked = false;
         },
-        salvaResposta() {
+        salvaResposta(valor) {
             if (this.valoresRespondidos[this.idx] != null) {
-                for (let index = 0; index < this.botoesResposta.length; index++) {
-                    if (this.botoesResposta[index].checked == true) {
-                        this.valoresRespondidos[this.idx] = this.botoesResposta[index].value;
-                    }
-                }
+                this.valoresRespondidos[this.idx] = valor;
+            } else {
+                this.valoresRespondidos.push(valor);
             }
-            else {
-                for (let index = 0; index < this.botoesResposta.length; index++) {
-                    if (this.botoesResposta[index].checked == true) {
-                        this.valoresRespondidos.push(this.botoesResposta[index].value);
-                    }
-                }
-            }
-            console.log(this.valoresRespondidos);
         },
         moveBarra() {
             var tamPercent = 100 / this.tamanhoLista;
             var percentAtual = tamPercent * (this.idx + 1);
-           // document.getElementById("progressBar").style.width = percentAtual + "%";
-            return 'width:'+ percentAtual.toFixed(0) + "%";
-         },
+            return 'width:' + percentAtual.toFixed(0) + "%";
+        },
         selecionado(valor) {
+            this.salvaResposta(valor)
+            document.getElementById('botaoProximo').disabled = false
+            if (this.idx >= this.tamanhoLista - 2) {
+                document.getElementById('btnResultado').disabled = false
+            }
             switch (valor) {
                 case 0:
                     document.getElementById("divFundo").style.backgroundColor = "LimeGreen";
@@ -122,6 +122,10 @@ export default {
             }
 
         },
+        proximaTela(){
+            this.$router.push('/resultados')
+            this.$emit('arrayResultados', this.valoresRespondidos)
+        }
     }
 }
 </script>
@@ -154,6 +158,10 @@ div.botoes {
     border-radius: 5%;
     background-color: white;
     border-color: #000000;
+}
+
+.botoes-pergunta:disabled,.botoes-pergunta[disabled]{
+    opacity: 35%;
 }
 
 .botoes-pergunta:hover {

@@ -1,48 +1,44 @@
 <template>
     <div class="opcoes">
-                <h1 class="legenda">Pouco</h1>
-                <label class="container">
-                    <input type="radio" name="radio" @click="selecionado(0)" v-model="resposta" value=0 id="btn1">
-                    <span class="checkmark opcao-1"></span>
-                </label>
-                <label class="container">
-                    <input type="radio" name="radio" @click="selecionado(1)" v-model="resposta" value=1 id="btn2">
-                    <span class="checkmark opcao-2"></span>
-                </label>
-                <label class="container">
-                    <input type="radio" name="radio" @click="selecionado(2)" v-model="resposta" value=2 id="btn3">
-                    <span class="checkmark opcao-3"></span>
-                </label>
-                <label class="container">
-                    <input type="radio" name="radio" @click="selecionado(3)" v-model="resposta" value=3 id="btn4">
-                    <span class="checkmark opcao-4"></span>
-                </label>
-
-                <h1 class="legenda-direita">Muito</h1>
-            </div>
+        <h1 class="legenda">Pouco</h1>
+        <label class="container">
+            <input type="radio" name="radio" @click="selecionado(0)" v-model="resposta" id="btn1">
+            <span class="checkmark opcao-1"></span>
+        </label>
+        <label class="container">
+            <input type="radio" name="radio" @click="selecionado(1)" v-model="resposta" id="btn2">
+            <span class="checkmark opcao-2"></span>
+        </label>
+        <label class="container">
+            <input type="radio" name="radio" @click="selecionado(2)" v-model="resposta" id="btn3">
+            <span class="checkmark opcao-3"></span>
+        </label>
+        <label class="container">
+            <input type="radio" name="radio" @click="selecionado(3)" v-model="resposta" id="btn4">
+            <span class="checkmark opcao-4"></span>
+        </label>
+        <h1 class="legenda-direita">Muito</h1>
+    </div>
 </template>
 
 <script>
 export default {
     name: 'EscalaResposta',
 
-    emits: [
-        'selecionado']
-        ,
+    emits: ['selecionado'],
     props: {
-        valor:{type: Number, required: false}
+        valor: { type: Number, required: false }
     },
-
-    data(){
+    data() {
         return {
             resposta: -1
         }
     },
-    created(){
+    created() {
         this.resposta = this.valor
     },
     methods: {
-        selecionado(valor){
+        selecionado(valor) {
             this.$emit('selecionado', valor)
         }
     }
@@ -50,7 +46,6 @@ export default {
 </script>
 
 <style>
-
 div.opcoes {
     display: flex;
     flex-direction: row;
@@ -73,7 +68,6 @@ h1.legenda-direita {
     margin-right: 3%;
     color: orange;
 }
-
 
 .container {
     display: flex;
@@ -138,5 +132,4 @@ h1.legenda-direita {
 .container input:checked~.opcao-4 {
     background-color: orange;
 }
-
 </style>

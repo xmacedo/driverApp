@@ -4,8 +4,7 @@
 //import firebase from firebase
 //
 
-import perguntasArray from "@/key/configKey";
-
+import perguntasArray from "@/key/configKey"; 
 // Inicialize o Firebase Admin SDK com suas credenciais
 //console.log(app)
 
@@ -16,7 +15,18 @@ const services = {
   },
   getPerguntas() {
     return perguntasArray[0];
+  },
+  calculaResposta(array){
+    let resultado;
+
+    for (let i = 0; i < array.length; i++) {
+       resultado =+ array[i];
+      
+    }
+
+    return resultado
   }
+  
 }
 
 /* get(dbRef, `perguntas/`).then((snapshot) => {
