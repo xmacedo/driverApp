@@ -21,6 +21,7 @@
 
 <script>
 /* eslint-disable */
+import {useRespostaStore} from '../stores'
 import { onLog } from 'firebase/app';
 import services from '../Services/index'
 import CaixaPergunta from './CaixaPergunta.vue';
@@ -45,6 +46,8 @@ export default {
     },
     created() {
         this.pergunta = services.getPergunta(this.idx);
+        const store = useRespostaStore()
+        console.log(store.$state);
     },
     methods: {
         perguntaAnterior() {
@@ -73,7 +76,7 @@ export default {
             }
             this.limpaTela();
             document.getElementById('botaoProximo').disabled = true
-
+            console.log(services.calculaResposta(this.valoresRespondidos));
         },
         limpaTela() {
             document.getElementById("divFundo").style.backgroundColor = "SeaShell";
@@ -83,10 +86,12 @@ export default {
             document.getElementById("btn4").checked = false;
         },
         salvaResposta(valor) {
-            if (this.valoresRespondidos[this.idx] != null) {
-                this.valoresRespondidos[this.idx] = valor;
+            const store = useRespostaStore()
+        console.log(store.$state);
+            if (store.$state.respostas[this.idx] != null) {
+                store.$state.respostas[this.idx] = valor;
             } else {
-                this.valoresRespondidos.push(valor);
+                store.$state.respostas.push(valor);
             }
         },
         moveBarra() {
