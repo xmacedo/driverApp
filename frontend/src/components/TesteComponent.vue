@@ -47,7 +47,6 @@ export default {
     created() {
         this.pergunta = services.getPergunta(this.idx);
         const store = useRespostaStore()
-        console.log(store.$state);
     },
     methods: {
         perguntaAnterior() {
@@ -76,7 +75,6 @@ export default {
             }
             this.limpaTela();
             document.getElementById('botaoProximo').disabled = true
-            console.log(services.calculaResposta(this.valoresRespondidos));
         },
         limpaTela() {
             document.getElementById("divFundo").style.backgroundColor = "SeaShell";
@@ -87,7 +85,6 @@ export default {
         },
         salvaResposta(valor) {
             const store = useRespostaStore()
-        console.log(store.$state);
             if (store.$state.respostas[this.idx] != null) {
                 store.$state.respostas[this.idx] = valor;
             } else {

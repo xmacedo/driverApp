@@ -17,14 +17,60 @@ const services = {
     return perguntasArray[0];
   },
   calculaResposta(array){
-    let resultado;
-
-    for (let i = 0; i < this.getPerguntas.length; i++) {
-       resultado =+ array[i];
-      
+    let resultado = 0;
+    for (let i = 0; i < array.length; i++) {
+      resultado = resultado + array[i]; 
     }
 
     return resultado
+  },
+  calculaDepressao(array){
+    let pontuacao = ''
+    let resultado = this.calculaResposta(array)
+    if(resultado < 4 ){
+      pontuacao = 'Normal'
+    }else if(resultado < 6){
+      pontuacao = 'Leve'
+    }else if(resultado < 10){
+      pontuacao = 'Moderado'
+    }else if(resultado < 13){
+      pontuacao = 'Forte'
+    }else{
+      pontuacao = 'Extremamente grave'
+    }
+    return pontuacao
+  },
+  calculaAnsiedade(array){
+    let pontuacao = ''
+    let resultado = this.calculaResposta(array)
+    if(resultado < 3 ){
+      pontuacao = 'Normal'
+    }else if(resultado < 5){
+      pontuacao = 'Leve'
+    }else if(resultado < 7){
+      pontuacao = 'Moderado'
+    }else if(resultado < 9){
+      pontuacao = 'Forte'
+    }else{
+      pontuacao = 'Extremamente grave'
+    }
+    return pontuacao
+  },
+  calculaEstresse(array){
+    let pontuacao = ''
+    let resultado = this.calculaResposta(array)
+    if(resultado < 7 ){
+      pontuacao = 'Normal'
+    }else if(resultado < 9){
+      pontuacao = 'Leve'
+    }else if(resultado < 12){
+      pontuacao = 'Moderado'
+    }else if(resultado < 16){
+      pontuacao = 'Forte'
+    }else{
+      pontuacao = 'Extremamente grave'
+    }
+    return pontuacao
   }
   
 }
