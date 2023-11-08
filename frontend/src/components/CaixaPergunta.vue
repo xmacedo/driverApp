@@ -1,16 +1,16 @@
 <template>
     <div class="caixa-pergunta">
-            <div>
-                <h2 class="caixa-pergunta-texto">{{ pergunta }}</h2>
-            </div>
-            <EscalaResposta @selecionado="selecionado"></EscalaResposta>
-            
+        <div>
+            <h2 class="caixa-pergunta-texto">{{ pergunta }}</h2>
         </div>
+        <EscalaResposta @selecionado="selecionado"></EscalaResposta>
+
+    </div>
 </template>
 
 <script>
 import EscalaResposta from './EscalaResposta.vue';
-export default{
+export default {
     name: 'CaixaPergunta',
 
     emits: ['resposta'],
@@ -22,7 +22,7 @@ export default{
         pergunta: String
     },
     methods: {
-        selecionado(valor){
+        selecionado(valor) {
             this.$emit('resposta', valor)
         }
     }
@@ -30,7 +30,6 @@ export default{
 </script>
 
 <style>
-
 .caixa-pergunta {
     border-radius: 16px;
     background-color: SeaShell;
@@ -54,4 +53,31 @@ export default{
 
 }
 
+@media (max-width: 1200px) {
+
+    .caixa-pergunta {
+        border-radius: 16px;
+        background-color: transparent;
+        border: 2px solid #000000;
+        width: 100%;
+        height: 20%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin: 5% auto;
+
+        border: 0px;
+
+    }
+
+    .caixa-pergunta-texto {
+        position: relative;
+        font-weight: bold;
+        font-size: 1.5rem;
+        display: flex;
+        justify-content: center;
+
+    }
+
+}
 </style>

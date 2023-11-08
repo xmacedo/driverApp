@@ -46,7 +46,7 @@ export default {
 </script>
 
 <style>
-div.opcoes {
+.opcoes {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -67,6 +67,7 @@ h1.legenda-direita {
     margin-left: 5%;
     margin-right: 3%;
     color: orange;
+    font-weight: bold;
 }
 
 .container {
@@ -88,8 +89,8 @@ h1.legenda-direita {
 /* Create a custom radio button */
 .checkmark {
     position: relative;
-    height: 100px;
-    width: 100px;
+    height: 50px;
+    width: 50px;
     background-color: #fff;
     border-radius: 50%;
     display: flex;
@@ -131,5 +132,14 @@ h1.legenda-direita {
 
 .container input:checked~.opcao-4 {
     background-color: orange;
+}
+
+@media (max-width: 1200px){
+    .opcoes {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 }
 </style>

@@ -58,5 +58,17 @@ export default {
 .resultado-individual{
     display: flex;
     flex-direction: column;
+    border: 2px solid #000000;
+
+}
+
+@media (max-width: 1200px) {
+    .resultados {
+    padding-top: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+}
 }
 </style>

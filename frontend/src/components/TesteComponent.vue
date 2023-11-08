@@ -2,7 +2,7 @@
     <div class="fundo" id="divFundo">
         <div class="w3-light-grey w3-round-large">
             <div class="w3-container w3-blue w3-round-large" id="progressBar" :style="moveBarra()"> ∘ </div>
-        </div><br>
+        </div>
 
         <CaixaPergunta :pergunta="pergunta" @resposta="selecionado"></CaixaPergunta>
 
@@ -132,7 +132,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .fundo {
     background-color: SeaShell;
     height: 100%;
@@ -142,7 +142,6 @@ export default {
     top: 100px;
     bottom: 0;
 }
-
 div.botoes {
     display: flex;
     flex-direction: row;
@@ -178,49 +177,14 @@ div.botoes {
     background-color: #f1f1f1 !important
 }
 
-.w3-round-small {
-    border-radius: 2px
-}
-
-.w3-round,
-.w3-round-medium {
-    border-radius: 4px
-}
-
 .w3-round-large {
     border-radius: 8px
 }
 
-.w3-round-xlarge {
-    border-radius: 16px
-}
-
-.w3-round-xxlarge {
-    border-radius: 32px
-}
-
 .w3-container:after,
 .w3-container:before,
-.w3-panel:after,
-.w3-panel:before,
-.w3-row:after,
-.w3-row:before,
-.w3-row-padding:after,
-.w3-row-padding:before,
 .w3-container:after,
-.w3-container:before,
-.w3-panel:after,
-.w3-panel:before,
-.w3-row:after,
-.w3-row:before,
-.w3-row-padding:after,
-.w3-row-padding:before,
-.w3-cell-row:before,
-.w3-cell-row:after,
-.w3-clear:after,
-.w3-clear:before,
-.w3-bar:before,
-.w3-bar:after {
+.w3-container:before {
     content: "";
     display: table;
     clear: both
@@ -231,58 +195,13 @@ div.botoes {
     padding: 0.01em 16px
 }
 
-.w3-panel {
-    margin-top: 16px;
-    margin-bottom: 16px
-}
-
 .w3-blue,
 .w3-hover-blue:hover {
     color: #fff !important;
     background-color: #2196F3 !important
 }
 
-.w3-blue-grey,
-.w3-hover-blue-grey:hover,
-.w3-blue-gray,
-.w3-hover-blue-gray:hover {
-    color: #fff !important;
-    background-color: #607d8b !important
-}
-
-@media (max-width: 1200px) {
-
-    .caixa-pergunta {
-        width: 100%;
-        height: 35%;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        margin-top: 50%;
-        margin-bottom: 50%;
-
-    }
-
-    .caixa-pergunta-texto {
-        position: relative;
-        top: 0;
-        font-weight: 400;
-        font-size: 1rem;
-        display: flex;
-        justify-content: center;
-
-    }
-
-    .checkmark {
-        position: relative;
-        height: 20px;
-        width: 20px;
-        background-color: #fff;
-        border-radius: 50%;
-        display: flex;
-        justify-content: space-between;
-    }
-
+@media (max-width: 1200px){
 
 }
 </style>
