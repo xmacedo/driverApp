@@ -89,8 +89,8 @@ h1.legenda-direita {
 /* Create a custom radio button */
 .checkmark {
     position: relative;
-    height: 50px;
-    width: 50px;
+    height: 100px;
+    width: 100px;
     background-color: #fff;
     border-radius: 50%;
     display: flex;
@@ -134,12 +134,23 @@ h1.legenda-direita {
     background-color: orange;
 }
 
-@media (max-width: 1200px){
+@media (max-width: 1200px) {
     .opcoes {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .checkmark {
+        position: relative;
+        height: 50px;
+        width: 50px;
+        background-color: #fff;
+        border-radius: 50%;
+        display: flex;
+        justify-content: space-between;
+    }
+
 
 }
 </style>
