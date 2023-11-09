@@ -63,7 +63,7 @@ p.texto {
   text-align: center;
   border-radius: 5%;
   font-size: 1.5rem;
-  padding: 5%;
+  padding: 3%;
   text-decoration: none;
   font-family: 'Montserrat', sans-serif;
   border-style: solid;
