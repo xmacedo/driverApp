@@ -1,9 +1,15 @@
 <template>
-  <nav> 
-    <router-link to="/">Home</router-link> |
-    <router-link to="/teste">Teste</router-link>
+  <nav>
+    <div class="logo">
+      <a href="">
+        <img src="assets/logo-driver-life.svg" alt="Logo" class="logo-imagem">
+      </a>
+      <h1>Driver Life</h1>
+    </div>
+
+    <a href="" class="login">Login</a>
   </nav>
-  <router-view/>
+  <router-view />
 </template>
 
 <style>
@@ -17,14 +23,46 @@
 
 nav {
   padding: 30px;
+  display: flex;
+  justify-content: space-between;
 }
 
 nav a {
   font-weight: bold;
   color: #2c3e50;
+  text-decoration: none;
 }
 
 nav a.router-link-exact-active {
   color: #42b983;
+}
+
+div.logo {
+  display: flex;
+  flex-direction: row;
+}
+
+.logo-imagem {
+  margin-right: 3%;
+  width: 200px;
+  height: 50px;
+  border: 1px solid black;
+  text-align: center;
+  line-height: 65px;
+
+}
+
+.login {
+  border: 2px solid black;
+  text-align: center;
+  padding: 1.5% 3%;
+  border-radius: 16px;
+  background-color: darkred;
+  color: white;
+  margin-right: 3%;
+}
+
+.login:hover{
+  color: black;
 }
 </style>
