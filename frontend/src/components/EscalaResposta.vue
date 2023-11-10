@@ -103,7 +103,7 @@ h1.legenda-direita {
 } */
 
 .opcao-1 {
-    border: 2px  green;
+    border: 2px solid green;
 }
 
 .container input:checked~.opcao-1 {
@@ -111,7 +111,7 @@ h1.legenda-direita {
 }
 
 .opcao-2 {
-    border: 2px  greenyellow;
+    border: 2px solid greenyellow;
 }
 
 .container input:checked~.opcao-2 {
@@ -119,7 +119,7 @@ h1.legenda-direita {
 }
 
 .opcao-3 {
-    border: 2px slid yellow;
+    border: 2px solid yellow;
 }
 
 .container input:checked~.opcao-3 {
@@ -127,7 +127,7 @@ h1.legenda-direita {
 }
 
 .opcao-4 {
-    border: 2px  orange;
+    border: 2px solid orange;
 }
 
 .container input:checked~.opcao-4 {
@@ -169,6 +169,32 @@ h1.legenda-direita {
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     }
 
+    .opcao-1 {
+        border-left: 2px solid;
+        border-bottom: 2px solid;
+        border-right: 2px solid;
+        border-top: transparent;
+    }
 
+    .opcao-2 {
+        border-left: 2px solid;
+        border-bottom: transparent;
+        border-right: 2px solid;
+        border-top: transparent;
+    }
+
+    .opcao-3 {
+        border-left: 2px solid;
+        border-bottom: transparent;
+        border-right: 2px solid;
+        border-top: transparent;
+    }
+
+    .opcao-4 {
+        border-left: 2px solid;
+        border-bottom: transparent;
+        border-right: 2px solid;
+        border-top: 2px solid;
+    }
 }
 </style>
