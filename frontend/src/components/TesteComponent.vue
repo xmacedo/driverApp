@@ -8,12 +8,12 @@
 
 
         <div class="botoes">
-            <button :style="(visivelAnterior ? 'visibility: visible' : 'visibility: hidden')" class="botoes-pergunta"
+            <button :style="(visivelAnterior ? 'visibility: visible' : 'visibility: hidden')" class="botoes-pergunta esquerda"
                 @click="perguntaAnterior">Pergunta anterior</button>
-            <button id="botaoProximo" v-show="visivelProximo" class="botao-direita botoes-pergunta" disabled
+            <button id="botaoProximo" v-show="visivelProximo" class="direita botoes-pergunta" disabled
                 @click="perguntaProxima">Proxima
                 pergunta</button>
-            <button id="btnResultado" v-show="visivel3" class="botoes-pergunta" disabled @click="proximaTela">Ver
+            <button id="btnResultado" v-show="visivel3" class="botoes-pergunta direita" disabled @click="proximaTela">Ver
                 resultados</button>
 
         </div>
@@ -159,12 +159,14 @@ export default {
     justify-content: center;
     top: 100px;
     bottom: 0;
+    transition: background-color 1s;
 }
 
 div.botoes {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    
 }
 
 .invisible {
@@ -175,11 +177,23 @@ div.botoes {
     height: 100px;
     width: 300px;
     margin: 5% 15%;
+    flex-grow: 1;
     border-radius: 5%;
     background-color: white;
     border-color: #000000;
 }
 
+.esquerda{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+
+.direita{
+    position: fixed;
+    right: 0;
+    bottom: 0; 
+}
 .botoes-pergunta:disabled,
 .botoes-pergunta[disabled] {
     opacity: 35%;
@@ -221,5 +235,11 @@ div.botoes {
     background-color: #2196F3 !important
 }
 
-@media (max-width: 1200px) {}
+@media (max-width: 1200px) {
+    .botoes-pergunta {
+    height: 100px;
+    width: 100px;
+}
+
+}
 </style>
