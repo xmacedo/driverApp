@@ -2,19 +2,19 @@
     <div class="opcoes">
         <h1 class="legenda">Pouco</h1>
         <label class="container">
-            <input type="radio" name="radio" @click="selecionado(0)" v-model="resposta" id="btn1">
+            <input type="checkbox" name="checkbox" @click="selecionado(0)" v-model="resposta" id="btn1">
             <span class="checkmark opcao-1"></span>
         </label>
         <label class="container">
-            <input type="radio" name="radio" @click="selecionado(1)" v-model="resposta" id="btn2">
+            <input type="checkbox" name="checkbox" @click="selecionado(1)" v-model="resposta" id="btn2">
             <span class="checkmark opcao-2"></span>
         </label>
         <label class="container">
-            <input type="radio" name="radio" @click="selecionado(2)" v-model="resposta" id="btn3">
+            <input type="checkbox" name="checkbox" @click="selecionado(2)" v-model="resposta" id="btn3">
             <span class="checkmark opcao-3"></span>
         </label>
         <label class="container">
-            <input type="radio" name="radio" @click="selecionado(3)" v-model="resposta" id="btn4">
+            <input type="checkbox" name="checkbox" @click="selecionado(3)" v-model="resposta" id="btn4">
             <span class="checkmark opcao-4"></span>
         </label>
         <h1 class="legenda-direita">Muito</h1>
@@ -79,14 +79,14 @@ h1.legenda-direita {
     margin: 0 0 5% 0;
 }
 
-/*    Hide the browser's default radio button */
+/*    Hide the browser's default checkbox button */
 .container input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
 }
 
-/* Create a custom radio button */
+/* Create a custom checkbox button */
 .checkmark {
     position: relative;
     height: 100px;
@@ -98,12 +98,12 @@ h1.legenda-direita {
 }
 
 /* On mouse-over, add a grey background color */
-.container:hover input~.checkmark {
+/* .container:hover input~.checkmark {
     background-color: #ccc;
-}
+} */
 
 .opcao-1 {
-    border: 2px solid green;
+    border: 2px  green;
 }
 
 .container input:checked~.opcao-1 {
@@ -111,7 +111,7 @@ h1.legenda-direita {
 }
 
 .opcao-2 {
-    border: 2px solid greenyellow;
+    border: 2px  greenyellow;
 }
 
 .container input:checked~.opcao-2 {
@@ -119,7 +119,7 @@ h1.legenda-direita {
 }
 
 .opcao-3 {
-    border: 2px solid yellow;
+    border: 2px slid yellow;
 }
 
 .container input:checked~.opcao-3 {
@@ -127,7 +127,7 @@ h1.legenda-direita {
 }
 
 .opcao-4 {
-    border: 2px solid orange;
+    border: 2px  orange;
 }
 
 .container input:checked~.opcao-4 {
@@ -144,11 +144,20 @@ h1.legenda-direita {
     .checkmark {
         position: relative;
         height: 50px;
-        width: 50px;
+        width: 150px;
         background-color: #fff;
-        border-radius: 50%;
+        border-radius: 0%;
         display: flex;
         justify-content: space-between;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        cursor: pointer;
+        justify-content: center;
+        margin: 0;
     }
 
     h1.legenda {

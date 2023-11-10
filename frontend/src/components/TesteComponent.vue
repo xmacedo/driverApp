@@ -10,9 +10,11 @@
         <div class="botoes">
             <button :style="(visivelAnterior ? 'visibility: visible' : 'visibility: hidden')" class="botoes-pergunta"
                 @click="perguntaAnterior">Pergunta anterior</button>
-            <button id="botaoProximo" v-show="visivelProximo" class="botao-direita botoes-pergunta" disabled @click="perguntaProxima">Proxima
+            <button id="botaoProximo" v-show="visivelProximo" class="botao-direita botoes-pergunta" disabled
+                @click="perguntaProxima">Proxima
                 pergunta</button>
-            <button id="btnResultado" v-show="visivel3" class="botoes-pergunta" disabled @click="proximaTela">Ver resultados</button>
+            <button id="btnResultado" v-show="visivel3" class="botoes-pergunta" disabled @click="proximaTela">Ver
+                resultados</button>
 
         </div>
 
@@ -21,7 +23,7 @@
 
 <script>
 /* eslint-disable */
-import {useRespostaStore} from '../stores'
+import { useRespostaStore } from '../stores'
 import { onLog } from 'firebase/app';
 import services from '../Services/index'
 import CaixaPergunta from './CaixaPergunta.vue';
@@ -104,18 +106,34 @@ export default {
             }
             switch (valor) {
                 case 0:
+                    document.getElementById("btn1").checked = true;
+                    document.getElementById("btn2").checked = false;
+                    document.getElementById("btn3").checked = false;
+                    document.getElementById("btn4").checked = false;
                     document.getElementById("divFundo").style.backgroundColor = "LimeGreen";
 
                     break;
                 case 1:
+                    document.getElementById("btn1").checked = true;
+                    document.getElementById("btn2").checked = true;
+                    document.getElementById("btn3").checked = false;
+                    document.getElementById("btn4").checked = false;
                     document.getElementById("divFundo").style.backgroundColor = "LightGreen";
 
                     break;
                 case 2:
+                    document.getElementById("btn1").checked = true;
+                    document.getElementById("btn2").checked = true;
+                    document.getElementById("btn3").checked = true;
+                    document.getElementById("btn4").checked = false;
                     document.getElementById("divFundo").style.backgroundColor = "Khaki";
 
                     break;
                 case 3:
+                    document.getElementById("btn1").checked = true;
+                    document.getElementById("btn2").checked = true;
+                    document.getElementById("btn3").checked = true;
+                    document.getElementById("btn4").checked = true;
                     document.getElementById("divFundo").style.backgroundColor = "SandyBrown";
 
                     break;
@@ -124,7 +142,7 @@ export default {
             }
 
         },
-        proximaTela(){
+        proximaTela() {
             this.$router.push('/resultados')
             this.$emit('arrayResultados', this.valoresRespondidos)
         }
@@ -142,6 +160,7 @@ export default {
     top: 100px;
     bottom: 0;
 }
+
 div.botoes {
     display: flex;
     flex-direction: row;
@@ -161,7 +180,8 @@ div.botoes {
     border-color: #000000;
 }
 
-.botoes-pergunta:disabled,.botoes-pergunta[disabled]{
+.botoes-pergunta:disabled,
+.botoes-pergunta[disabled] {
     opacity: 35%;
 }
 
@@ -201,7 +221,5 @@ div.botoes {
     background-color: #2196F3 !important
 }
 
-@media (max-width: 1200px){
-
-}
+@media (max-width: 1200px) {}
 </style>
