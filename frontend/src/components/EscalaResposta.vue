@@ -137,7 +137,7 @@ h1.legenda-direita {
 @media (max-width: 1200px) {
     .opcoes {
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
         justify-content: space-between;
     }
 
@@ -149,6 +149,15 @@ h1.legenda-direita {
         border-radius: 50%;
         display: flex;
         justify-content: space-between;
+    }
+
+    h1.legenda {
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+
+    }
+
+    h1.legenda-direita {
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     }
 
 
