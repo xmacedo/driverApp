@@ -1,10 +1,10 @@
 import { dbRef } from "../key/configKey"
 import { child, get } from "firebase/database";
-import useAppStore from "@/stores";
+import { appStore } from '../main.js';
+
 const firebaseServices = {
 
     getPerguntas() {
-        const appStore = useAppStore()
         get(child(dbRef, `perguntas/`)).then((snapshot) => {
             if (snapshot.exists()) {
 

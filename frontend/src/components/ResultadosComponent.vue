@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import appStore from '../stores'
+import { appStore } from '../main.js';
 import services from '../Services/services'
 
 export default {
