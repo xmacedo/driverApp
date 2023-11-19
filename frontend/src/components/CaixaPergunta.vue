@@ -29,7 +29,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .caixa-pergunta {
     border-radius: 16px;
     background-color: SeaShell;
