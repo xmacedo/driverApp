@@ -45,7 +45,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .opcoes {
     display: flex;
     flex-direction: row;

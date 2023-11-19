@@ -8,6 +8,8 @@
   <div class="apresentacao__botao">
     <button class="apresentacao__botao__texto" @click="$router.push('/teste')">Iniciar teste</button>
   </div>
+
+  <a class="link-contrato" @click="$router.push('/contrato')">Termos de uso</a>
 </template>
 
 <script>
@@ -129,6 +131,9 @@ p.texto {
     margin-top: 35%;
   }
 
-
+  a.link-contrato {
+    cursor: pointer;
+    
+  }
 }
 </style>

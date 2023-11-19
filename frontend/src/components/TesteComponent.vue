@@ -25,7 +25,6 @@
 import firebaseServices from '@/Services/firebaseServices';
 import services from '../Services/services'
 import CaixaPergunta from './CaixaPergunta.vue';
-import useAppStore from '../stores';
 import { appStore } from '../main.js';
 export default {
     name: 'TesteComponent',

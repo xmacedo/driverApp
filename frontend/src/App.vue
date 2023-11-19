@@ -7,7 +7,7 @@
       <h1 class="titulo-app">Driver Life</h1>
     </div>
 
-    <a href="" class="login">Login</a>
+    <!-- <a href="" class="login">Login</a> -->
   </nav>
   <router-view />
 </template>

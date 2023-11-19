@@ -47,7 +47,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .resultados {
     padding-top: 5%;
     display: flex;
