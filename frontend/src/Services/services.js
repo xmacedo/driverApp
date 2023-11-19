@@ -1,122 +1,84 @@
 /* eslint-disable */ // --> OFF
 
-
-//import firebase from firebase
-//
-
-import perguntasArray from "@/key/configKey"; 
 // Inicialize o Firebase Admin SDK com suas credenciais
-//console.log(app)
-
+import useAppStore from "@/stores";
 
 const services = {
-  getPergunta(pos) {
-    return perguntasArray[0][pos];
+  salvaResposta(valor, idx){
+    const appStore = useAppStore();
+    if(appStore.respostas[idx] != null){
+      appStore.respostas[idx] = valor;
+    } else {
+      appStore.respostas.push(valor)
+    }
   },
-  getPerguntas() {
-    return perguntasArray[0];
+
+  getPergunta(idx){
+    const appStore = useAppStore();
+
+    
+    return appStore.perguntas[0][idx];
+
   },
-  calculaResposta(array){
+
+  calculaResposta(array) {
     let resultado = 0;
     for (let i = 0; i < array.length; i++) {
-      resultado = resultado + array[i]; 
+      resultado = resultado + array[i];
     }
 
     return resultado
   },
-  calculaDepressao(array){
+  calculaDepressao(array) {
     let pontuacao = ''
     let resultado = this.calculaResposta(array)
-    if(resultado < 4 ){
+    if (resultado < 4) {
       pontuacao = 'Normal'
-    }else if(resultado < 6){
+    } else if (resultado < 6) {
       pontuacao = 'Leve'
-    }else if(resultado < 10){
+    } else if (resultado < 10) {
       pontuacao = 'Moderado'
-    }else if(resultado < 13){
+    } else if (resultado < 13) {
       pontuacao = 'Forte'
-    }else{
+    } else {
       pontuacao = 'Extremamente grave'
     }
     return pontuacao
   },
-  calculaAnsiedade(array){
+  calculaAnsiedade(array) {
     let pontuacao = ''
     let resultado = this.calculaResposta(array)
-    if(resultado < 3 ){
+    if (resultado < 3) {
       pontuacao = 'Normal'
-    }else if(resultado < 5){
+    } else if (resultado < 5) {
       pontuacao = 'Leve'
-    }else if(resultado < 7){
+    } else if (resultado < 7) {
       pontuacao = 'Moderado'
-    }else if(resultado < 9){
+    } else if (resultado < 9) {
       pontuacao = 'Forte'
-    }else{
+    } else {
       pontuacao = 'Extremamente grave'
     }
     return pontuacao
   },
-  calculaEstresse(array){
+  calculaEstresse(array) {
     let pontuacao = ''
     let resultado = this.calculaResposta(array)
-    if(resultado < 7 ){
+    if (resultado < 7) {
       pontuacao = 'Normal'
-    }else if(resultado < 9){
+    } else if (resultado < 9) {
       pontuacao = 'Leve'
-    }else if(resultado < 12){
+    } else if (resultado < 12) {
       pontuacao = 'Moderado'
-    }else if(resultado < 16){
+    } else if (resultado < 16) {
       pontuacao = 'Forte'
-    }else{
+    } else {
       pontuacao = 'Extremamente grave'
     }
     return pontuacao
-  }
+  },
   
 }
-
-/* get(dbRef, `perguntas/`).then((snapshot) => {
-  if (snapshot.exists()) {
-    
-    perguntas.push(snapshot.val());
-  } else {
-    console.log("No data available");
-  }
-}).catch((error) => {
-  console.error(error);
-});
- 
-
-
-/* 
-var perguntasRef = firebase.database().ref('perguntas/');
-perguntasRef.on('value', (snapshot) => {
-  const data = snapshot.val();
-  console.log(data);
-});
- */
-// Referência à base de dados Realtime do Firebase
-/* const perguntas = []
-// Obtém todas as perguntas
-ref.once('value', (snapshot) => {
-  const response = snapshot.val();
-  
-  if (response) {
-    Object.keys(response).forEach((perguntaId, index) => {
-        perguntas.push(response[perguntaId])
-      //const pergunta = response[perguntaId];
-      console.log(`Pergunta ${index + 1}: ${pergunta}`);
-    });
-  } else {
-    console.log('Nenhuma pergunta encontrada no Firebase Realtime Database.');
-  }
-
-  // Encerra a conexão com o Firebase
-  admin.app().delete();
-}); */
-// edn
-
-
 
 /* 
 const perguntas = [

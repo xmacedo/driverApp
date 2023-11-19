@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import { useRespostaStore } from '../stores'
-import services from '../Services/index'
+import appStore from '../stores'
+import services from '../Services/services'
 
 export default {
     name: 'ResultadosComponent',
@@ -33,8 +33,7 @@ export default {
         }
     },
     created() {
-        const store = useRespostaStore()
-        this.resultados = store.$state.respostas
+        this.resultados = appStore.respostas
         this.pontuacaoDepressao = services.calculaDepressao(this.resultados)
         this.pontuacaoAnsiedade = services.calculaAnsiedade(this.resultados)
         this.pontuacaoEstresse = services.calculaEstresse(this.resultados)

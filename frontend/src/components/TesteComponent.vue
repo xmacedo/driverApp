@@ -6,10 +6,9 @@
 
         <CaixaPergunta :pergunta="pergunta" @resposta="selecionado"></CaixaPergunta>
 
-
         <div class="botoes">
-            <button :style="(visivelAnterior ? 'visibility: visible' : 'visibility: hidden')" class="botoes-pergunta esquerda"
-                @click="perguntaAnterior">Pergunta anterior</button>
+            <button :style="(visivelAnterior ? 'visibility: visible' : 'visibility: hidden')"
+                class="botoes-pergunta esquerda" @click="perguntaAnterior">Pergunta anterior</button>
             <button id="botaoProximo" v-show="visivelProximo" class="direita botoes-pergunta" disabled
                 @click="perguntaProxima">Proxima
                 pergunta</button>
@@ -23,10 +22,10 @@
 
 <script>
 /* eslint-disable */
-import { useRespostaStore } from '../stores'
-import { onLog } from 'firebase/app';
-import services from '../Services/index'
+import firebaseServices from '@/Services/firebaseServices';
+import services from '../Services/services'
 import CaixaPergunta from './CaixaPergunta.vue';
+import useAppStore from '../stores';
 export default {
     name: 'TesteComponent',
 
@@ -42,13 +41,14 @@ export default {
             visivelProximo: true,
             desabilitado: true,
             visivel3: false,
-            tamanhoLista: services.getPerguntas().length,
-            valoresRespondidos: [],
+            tamanhoListaPerguntas: 0,
+            valoresRespondidos: []
         };
     },
     created() {
-        this.pergunta = services.getPergunta(this.idx);
-        const store = useRespostaStore()
+        const appStore = useAppStore()
+        this.pergunta = appStore.perguntas[0][this.idx]
+        this.tamanhoListaPerguntas = appStore.perguntas[0].length
     },
     methods: {
         perguntaAnterior() {
@@ -61,18 +61,18 @@ export default {
                 this.visivelProximo = true;
                 this.visivel3 = false;
             }
-            this.pergunta = services.getPergunta(this.idx);
+            this.pergunta = services.getPergunta(this.idx)
             document.getElementById('botaoProximo').disabled = true
 
         },
         perguntaProxima() {
-            if (this.idx >= this.tamanhoLista - 2) {
+            if (this.idx >= this.tamanhoListaPerguntas - 2) {
                 this.visivelProximo = false;
                 this.visivel3 = true;
             }
-            if (this.idx < this.tamanhoLista - 1) {
+            if (this.idx < this.tamanhoListaPerguntas - 1) {
                 this.idx++;
-                this.pergunta = services.getPergunta(this.idx);
+                this.pergunta = services.getPergunta(this.idx)
                 this.visivelAnterior = true;
             }
             this.limpaTela();
@@ -85,23 +85,15 @@ export default {
             document.getElementById("btn3").checked = false;
             document.getElementById("btn4").checked = false;
         },
-        salvaResposta(valor) {
-            const store = useRespostaStore()
-            if (store.$state.respostas[this.idx] != null) {
-                store.$state.respostas[this.idx] = valor;
-            } else {
-                store.$state.respostas.push(valor);
-            }
-        },
         moveBarra() {
-            var tamPercent = 100 / this.tamanhoLista;
+            var tamPercent = 100 / this.tamanhoListaPerguntas
             var percentAtual = tamPercent * (this.idx + 1);
             return 'width:' + percentAtual.toFixed(0) + "%";
         },
         selecionado(valor) {
-            this.salvaResposta(valor)
+            services.salvaResposta(valor, this.idx)
             document.getElementById('botaoProximo').disabled = false
-            if (this.idx >= this.tamanhoLista - 2) {
+            if (this.idx >= this.tamanhoListaPerguntas - 2) {
                 document.getElementById('btnResultado').disabled = false
             }
             switch (valor) {
@@ -166,7 +158,7 @@ div.botoes {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    
+
 }
 
 .invisible {
@@ -183,17 +175,18 @@ div.botoes {
     border-color: #000000;
 }
 
-.esquerda{
+.esquerda {
     position: fixed;
     left: 0;
     bottom: 0;
 }
 
-.direita{
+.direita {
     position: fixed;
     right: 0;
-    bottom: 0; 
+    bottom: 0;
 }
+
 .botoes-pergunta:disabled,
 .botoes-pergunta[disabled] {
     opacity: 35%;
@@ -237,9 +230,9 @@ div.botoes {
 
 @media (max-width: 1200px) {
     .botoes-pergunta {
-    height: 100px;
-    width: 100px;
-}
+        height: 100px;
+        width: 100px;
+    }
 
 }
 </style>

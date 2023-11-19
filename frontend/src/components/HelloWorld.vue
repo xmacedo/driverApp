@@ -11,9 +11,18 @@
 </template>
 
 <script>
+import firebaseServices from "../Services/firebaseServices"
+import appStore from "@/stores/index"
 export default {
   name: 'HelloWorld',
+  data(){ return {
+    meuArray:[]
+  }},
 
+  created(){
+   
+    firebaseServices.getPerguntas()
+  }
 }
 </script>
 

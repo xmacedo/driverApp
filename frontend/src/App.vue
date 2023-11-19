@@ -2,9 +2,9 @@
   <nav>
     <div class="logo">
       <a href="">
-        <img src="assets/logo-driver-life.svg" alt="Logo" class="logo-imagem">
+        <img src="./assets/logo-driver-life.svg" alt="Logo" class="logo-imagem">
       </a>
-      <h1>Driver Life</h1>
+      <h1 class="titulo-app">Driver Life</h1>
     </div>
 
     <a href="" class="login">Login</a>
@@ -44,12 +44,14 @@ div.logo {
 
 .logo-imagem {
   margin-right: 3%;
-  width: 200px;
-  height: 50px;
-  border: 1px solid black;
   text-align: center;
   line-height: 65px;
+  
+}
 
+.titulo-app{
+  margin-left: 2%;
+  width: 5%;
 }
 
 .login {
