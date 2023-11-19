@@ -17,7 +17,7 @@
     {{ resultadoFinal }}
 </template>
 
-<script>
+<script> 
 import { appStore } from '../main.js';
 import services from '../Services/services'
 

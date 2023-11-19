@@ -12,15 +12,17 @@
 
 <script>
 import firebaseServices from "../Services/firebaseServices"
-import appStore from "@/stores/index"
+
 export default {
   name: 'HelloWorld',
-  data(){ return {
-    meuArray:[]
-  }},
+  data() {
+    return {
 
-  created(){
-   
+    }
+  },
+
+  created() {
+
     firebaseServices.getPerguntas()
   }
 }
@@ -90,44 +92,43 @@ p.texto {
 @media (max-width: 1200px) {
 
   div.fundo {
-  margin: 30px;
-  background-color: gray;
-  border: 1px solid black; 
-  border-radius: 16px;
-  height: 30%;
-  width: 60%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    margin: 30px;
+    background-color: gray;
+    border: 1px solid black;
+    border-radius: 16px;
+    height: 30%;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  background-color: white;
+    background-color: white;
+  }
+
+  .centered {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    left: 42%;
+  }
+
+  p.texto {
+    margin: 5%;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000000;
+  }
+
+  .apresentacao__botao {
+    display: flex;
+    margin: 100px;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 35%;
+  }
+
+
 }
-
-.centered {
-  position: fixed;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  left: 42%;
-}
-
-p.texto {
-  margin: 5%;
-  font-size: 20px;
-  font-weight: bold;
-  color: #000000;
-}
-
-.apresentacao__botao {
-  display: flex;
-  margin: 100px;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 35%;
-}
-
-
-}
-
 </style>
