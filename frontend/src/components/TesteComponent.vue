@@ -26,6 +26,7 @@ import firebaseServices from '@/Services/firebaseServices';
 import services from '../Services/services'
 import CaixaPergunta from './CaixaPergunta.vue';
 import useAppStore from '../stores';
+import { appStore } from '../main.js';
 export default {
     name: 'TesteComponent',
 
@@ -46,7 +47,6 @@ export default {
         };
     },
     created() {
-        const appStore = useAppStore()
         this.pergunta = appStore.perguntas[0][this.idx]
         this.tamanhoListaPerguntas = appStore.perguntas[0].length
     },
