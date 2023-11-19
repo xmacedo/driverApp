@@ -1,11 +1,10 @@
 /* eslint-disable */ // --> OFF
 
-// Inicialize o Firebase Admin SDK com suas credenciais
-import useAppStore from "@/stores";
+import { appStore } from '../main.js';
 
 const services = {
   salvaResposta(valor, idx){
-    const appStore = useAppStore();
+
     if(appStore.respostas[idx] != null){
       appStore.respostas[idx] = valor;
     } else {
@@ -14,9 +13,6 @@ const services = {
   },
 
   getPergunta(idx){
-    const appStore = useAppStore();
-
-    
     return appStore.perguntas[0][idx];
 
   },
