@@ -173,26 +173,26 @@ h1.legenda-direita {
         border-left: 2px solid;
         border-bottom: 2px solid;
         border-right: 2px solid;
-        border-top: transparent;
+        border-top: 2px solid lightgray;
     }
 
     .opcao-2 {
         border-left: 2px solid;
-        border-bottom: transparent;
+        border-bottom: 2px solid lightgray;
         border-right: 2px solid;
-        border-top: transparent;
+        border-top: 2px solid lightgray;
     }
 
     .opcao-3 {
         border-left: 2px solid;
-        border-bottom: transparent;
+        border-bottom: 2px solid lightgray;
         border-right: 2px solid;
-        border-top: transparent;
+        border-top: 2px solid lightgray;
     }
 
     .opcao-4 {
         border-left: 2px solid;
-        border-bottom: transparent;
+        border-bottom: 2px solid lightgray;
         border-right: 2px solid;
         border-top: 2px solid;
     }
