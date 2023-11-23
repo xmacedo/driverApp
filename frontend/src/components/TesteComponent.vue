@@ -22,7 +22,6 @@
 
 <script>
 /* eslint-disable */
-import firebaseServices from '@/Services/firebaseServices';
 import services from '../Services/services'
 import CaixaPergunta from './CaixaPergunta.vue';
 import { appStore } from '../main.js';
@@ -148,8 +147,6 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    top: 100px;
-    bottom: 0;
     transition: background-color 1s;
 }
 
