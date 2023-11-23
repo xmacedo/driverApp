@@ -1,6 +1,7 @@
-import { dbRef } from "../key/configKey"
-import { child, get } from "firebase/database";
+import { dbRef, respostaRef, database } from "../key/configKey"
+import { child, get, push, ref } from "firebase/database";
 import { appStore } from '../main.js';
+import services from "./services";
 
 const firebaseServices = {
 
@@ -9,7 +10,7 @@ const firebaseServices = {
             if (snapshot.exists()) {
 
                 appStore.perguntas.push(snapshot.val())
-                
+
             } else {
                 console.log("No data available");
             }
@@ -19,14 +20,32 @@ const firebaseServices = {
 
     },
 
-    getIDUsuario() {
-        const referencia = dbRef.ref('resultados/')
+    salvaRespostaNoBanco(resultado) {
         if (localStorage.getItem("id") == null) {
-    
-          const newPostRef = referencia.push();
-          const postId = newPostRef.key;
-          localStorage.setItem("id", postId)
-        } 
+            push(respostaRef, {
+                'resposta': resultado,
+                'data': services.getData()
+            }).then((resposta) => {
+                console.log(resposta.key);
+                localStorage.setItem("id", resposta.key)
+            }).catch((error) => {
+                console.error(error);
+            });
+        } else {
+            const idUsuario = localStorage.getItem("id");
+            console.log(idUsuario);
+            const userRef = respostaRef.child(idUsuario);
+            userRef.set({
+                'resposta': resultado,
+                'data': services.getData()
+            })
+        }
+
+
+        /* console.log(newPostRef);
+        const postId = newPostRef.key;
+        localStorage.setItem("id", postId) */
+
     }
 
 };

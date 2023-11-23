@@ -3,16 +3,28 @@
 import { appStore } from '../main.js';
 
 const services = {
-  salvaResposta(valor, idx){
+  salvaResposta(valor, idx) {
 
-    if(appStore.respostas[idx] != null){
+    if (appStore.respostas[idx] != null) {
       appStore.respostas[idx] = valor;
     } else {
       appStore.respostas.push(valor)
     }
   },
 
-  getPergunta(idx){
+  getData() {
+    const date = new Date();
+
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+
+    // This arrangement can be altered based on how we want the date's format to appear.
+    let currentDate = `${day}-${month}-${year}`
+    return currentDate
+  },
+
+  getPergunta(idx) {
     return appStore.perguntas[0][idx];
 
   },
@@ -73,7 +85,7 @@ const services = {
     }
     return pontuacao
   },
-  
+
 }
 
 /* 
